@@ -35,4 +35,19 @@ void	normalize(t_tuple *norm_tup, t_tuple *tup, int magnitude);
 int		vect_dot_product(t_tuple *a, t_tuple *b);
 void	vect_cross_product(t_tuple *cross, t_tuple *a, t_tuple *b);
 
+/* This is from the TRTC book 1st chapter test */
+typedef struct s_projectile
+{
+	t_tuple	position;
+	t_tuple	velocity;
+}	t_projectile;
+
+typedef struct s_environment
+{
+	t_tuple	grvity;
+	t_tuple	wind;
+}	t_environment;
+
+void	tick(t_projectile *new_proj, t_environment *env, t_projectile *proj);
+
 #endif

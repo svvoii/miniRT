@@ -1,17 +1,5 @@
 #include "tpv.h"
 
-typedef struct s_projectile
-{
-	t_tuple	position;
-	t_tuple	velocity;
-}	t_projectile;
-
-typedef struct s_environment
-{
-	t_tuple	grvity;
-	t_tuple	wind;
-}	t_environment;
-
 void	tick(t_projectile *new_proj, t_environment *env, t_projectile *proj)
 {
 	t_tuple	tmp; 
@@ -22,14 +10,11 @@ void	tick(t_projectile *new_proj, t_environment *env, t_projectile *proj)
 	add_tuples(&new_proj->velocity, &proj->velocity, &tmp);
 }
 
+/*
 int	main()
 {
 	t_projectile	projectile;
 	t_tuple			tmp_vector; 
-	/*
-	tmp_vector is uset to compute gravity and wind and plug it in new_projectile
-	as velosity tuple with calculated magnitude
-	*/
 	t_environment	env;
 	int		i;
 
@@ -49,3 +34,4 @@ int	main()
 
 	return (0);
 }
+*/
