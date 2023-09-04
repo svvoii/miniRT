@@ -132,7 +132,10 @@ char	*cavas_to_ppm(int width, int height)
 	free(wd);
 	free(hg);
 	i = 0;
-
+	/*
+	** here supposed to be the logic to write the pixels into ppm file..
+	** dropped the idea and switched to usage of mlx..
+	*/
 }
 
 void	set_projectile_on_canvas(t_canvas *c, t_prj *projectile)
