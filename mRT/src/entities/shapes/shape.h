@@ -12,6 +12,7 @@
 
 #ifndef SHAPE_H
 # define SHAPE_H
+/*
 # include "../../../heads_global/minirt.h"
 
 typedef enum
@@ -26,12 +27,10 @@ typedef enum
 	CUBE
 }	e_type;
 
-/*
 ** Using enum e_type to define the shape type
 ** void *shape will hold a pointer to a particular 
 ** shape structure given in e_type and will be 
 ** initialized to NULL if type is NONE.
-*/
 typedef struct shape
 {
 	e_type		type;
@@ -39,6 +38,7 @@ typedef struct shape
 	t_matrix	trans;
 	void		*shape;
 }	t_shape;
+*/
 
 /*
 typedef struct shape
@@ -48,11 +48,11 @@ typedef struct shape
 	t_matrix	*trans;
 	void		*shape;
 }	t_shape;
-*/
 //t_shape	*make_shape(char type, void *shape_itself);
 t_shape	*make_shape(e_type type, void *shape_itself);
 void	*set_transform(t_shape *sh, t_matrix *trans);
 t_tuple	*shape_normal_at(t_shape *sh, t_tuple *p);
 void	free_shape(t_shape *s);
+*/
 
 #endif

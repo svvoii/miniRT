@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 16:01:47 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 19:06:54 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:12:52 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
  * 1 - height
  * 2 - width
  */
-void	check_resolution(int **counters_ptr, int *is_correct, char **str)
+void	check_resolution(int *counters, int *is_correct, char **str)
 {
-	int	*counters;
 	int	i;
 	int	s1;
 	int	s2;
 
-	counters = *counters_ptr;
-	i = 0;
+	i = 1;
 	while (str[i])
 		i++;
 	if (i != 3 || !ft_isnumber(str[1]) || !ft_isnumber(str[2]))
@@ -44,13 +42,13 @@ void	check_resolution(int **counters_ptr, int *is_correct, char **str)
  * 1 - intensity
  * 2 - color
  */
-void	check_ambiance(int **counters_ptr, int *is_correct, char **str)
+void	check_ambiance(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -72,13 +70,13 @@ void	check_ambiance(int **counters_ptr, int *is_correct, char **str)
  * 3 - vector UP
  * 4 - angle
  */
-void	check_cameras(int **counters_ptr, int *is_correct, char **str)
+void	check_cameras(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -102,13 +100,13 @@ void	check_cameras(int **counters_ptr, int *is_correct, char **str)
  * 2 - intensity
  * 3 - color
  */
-void	check_lights(int **counters_ptr, int *is_correct, char **str)
+void	check_lights(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;

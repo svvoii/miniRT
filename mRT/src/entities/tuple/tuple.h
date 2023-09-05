@@ -6,13 +6,29 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 13:12:18 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:33:47 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TUPLE_H
 # define TUPLE_H
-# include "../../../heads_global/minirt.h"
+
+# include "../../../includes/minirt.h"
+
+/* handle_tuple.c */
+void	set_tuple(t_tuple *tuple, char *value, e_tuple type);
+void	scale_tuple(t_tuple *t, double scale);
+void	add_tuples(t_tuple *dest, t_tuple *t1, t_tuple *t2);
+void	copy_tuple(t_tuple *dest, t_tuple *from);
+void	substract_tuple(t_tuple *dest, t_tuple *t1, t_tuple *t2);
+void	normalize_tuple(t_tuple *norm, t_tuple *t);
+void	cross_product_tuple(t_tuple *cros_p, t_tuple *t1, t_tuple *t2);
+void	negate_tuple(t_tuple *t);
+
+/* tuple_basic.c */
+int	is_tuple(char *value, int exclude_neg);
+
+/*
 # define IS_POINT    1
 # define IS_VECTOR   0
 
@@ -30,7 +46,6 @@ typedef struct tuple
 	double	z;
 	e_tuple	type;
 }	t_tuple;
-
 int		is_tuple(char *value, int exclude_neg);
 
 t_tuple	*tuple_vector(double x, double y, double z);
@@ -54,7 +69,7 @@ t_tuple	*tuple_multiply(t_tuple *t1, t_tuple *t2);
 t_tuple	*tuple_reflect(t_tuple *v_in, t_tuple *v_normal);
 t_tuple	*tuple_copy(t_tuple *t);
 
-/* handle_tuple.c */
+// handle_tuple.c
 void	set_tuple(t_tuple *tuple, char *value, e_tuple type);
 void	scale_tuple(t_tuple *t, double scale);
 void	copy_tuple(t_tuple *dest, t_tuple *from);
@@ -64,4 +79,5 @@ void	normalize_tuple(t_tuple *norm, t_tuple *t);
 void	cross_product_tuple(t_tuple *cros_p, t_tuple *t1, t_tuple *t2);
 void	negate_tuple(t_tuple *t);
 
+*/
 #endif 

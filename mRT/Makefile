@@ -7,15 +7,6 @@
 
 NAME = miniRT
 
-_NC=`tput sgr0`
-_RED=\033[0;31m
-_GREEN=\033[0;32m
-_YELLOW=\033[0;33m
-_BLUE=\033[0;34m
-_PURPLE=\033[0;95m
-_CYAN=\033[0;36m
-_WHITE=\033[0;37m
-
 DEBUG = dbRT
 
 SAN = sanRT
@@ -24,18 +15,28 @@ SDIR = src
 
 ODIR = tmp
 
-#LIBFT = lib/libft/libft.a
+LIBFT = lib/libft/libft.a
 
 #LIBX = mlx_linux/libmlx.a
 
 SRC = \
-main.c \
-service/files/handle_scene.c \
-entities/tuple/handle_tuple.c \
-entities/shapes/sphere/handle_sphere.c \
-entities/matrix/handle_matrix.c \
-entities/camera/handle_camera.c
-
+	main.c \
+	entities/camera/handle_camera.c \
+\
+	entities/matrix/handle_matrix.c \
+\
+	entities/shapes/sphere/handle_sphere.c \
+\
+	entities/tuple/handle_tuple.c \
+	entities/tuple/tuple_basic.c \
+\
+	service/errs/file_check_handler.c \
+	service/errs/file_instructions_checker.c \
+	service/errs/file_shape_description_checker.c \
+	service/errs/input_exceptions.c \
+\
+	service/files/handle_scene.c \
+	service/files/init_scene.c
 
 OBS = $(addprefix $(ODIR)/,${SRC:.c=.o})
 
@@ -46,7 +47,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 
 all: ${NAME}
-	@printf "\e[92;5;118m\n>>> miniRT ready\n\e[0m"
+	@printf "\e[92;118m\n>>> miniRT ready\n\e[0m"
 
 $(SAN): pre-build get-libft #get-libx
 	${CC} ${FLAGS} -O1 -g -fsanitize=address -o ${SAN} ${SRCS} ${LIBFT} ${LIBX} -Imlx_linux -lXext -lX11 -lm -lz

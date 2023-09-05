@@ -6,11 +6,69 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 13:56:00 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:56:44 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../heads_global/minirt.h"
+#include "../../../includes/minirt.h"
+
+void	mtx_identity(t_matrix *m, int i)
+{
+	while (--i >= 0)
+	{
+		m->matrix[i][i] = 1;
+	}
+}
+
+void	mtx_scale(t_matrix *m, double x, double y, double z)
+{
+	mtx_identity(m, M_MAX);
+	m->matrix[0][0] = x;
+	m->matrix[1][1] = y;
+	m->matrix[2][2] = z;
+}
+
+//void	mtx_translate(t_matrix *m, double x, double y, double z)
+void	mtx_translate(t_matrix *m, t_tuple *tpl)
+{
+	mtx_identity(m, M_MAX);
+	m->matrix[0][3] = tpl->x;
+	m->matrix[1][3] = tpl->y;
+	m->matrix[2][3] = tpl->z;
+}
+
+void	mtx_multiply(t_matrix *res, t_matrix *m1, t_matrix *m2)
+{
+	int			h;
+	int			w;
+	int			i;
+
+	printf("Multiply Matrix:\n");
+	//res->h = min(m1->h, m2->h);
+	//res->w = min(m1->w, m2->w);
+	res->h = M_MAX;
+	res->w = M_MAX;
+	h = 0;
+	while (h < res->h)
+	{
+		w = 0;
+		while (w < res->w)
+		{
+			i = 0;
+			//while (i < m1->w && i < m2->h)
+			while (i < M_MAX)
+			{
+				/* DEBUG */
+				printf("\tm1->h [%d], m1->w:[%d], m2->h:[%d], m2->w:[%d]\n", m1->h, m1->w, m2->h, m2->w);
+				/* ***** */
+				res->matrix[h][w] += m1->matrix[h][i] * m2->matrix[i][w];
+				i++;
+			}
+			w++;
+		}
+		h++;
+	}
+}
 
 /*
 ** Creates an instance of t_matrix with matrix_identity() of size 3*3, 

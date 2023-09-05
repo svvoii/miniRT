@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 19:21:50 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:09:35 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 **
 ** cam->pix_size is composed as (half_w * 2) / h_size
 */
-void	make_camera(t_scene *s, double fov)
+void	init_camera(t_scene *s, double fov)
 {
 	t_camera	*cam;
 
 	//cam = (t_camera *)malloc(sizeof(t_camera));
-	cam = &s->cameras;
+	cam = &s->cameras[s->camera_counter];
 	cam->h_size = s->resolution_y;
 	cam->v_size = s->resolution_x;
 	//cam->transform = NULL;

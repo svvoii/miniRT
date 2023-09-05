@@ -6,11 +6,24 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 14:08:21 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:38:31 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../heads_global/minirt.h"
+#include "../../../includes/minirt.h"
+
+void	cleanup(char **values)
+{
+	int	i;
+
+	i = 0;
+	while (values[i])
+	{
+		free(values[i]);
+		i++;
+	}
+	free(values);
+}
 
 /*
 ** This f() simply handles the resolution from the input file
@@ -68,10 +81,10 @@ void	handle_c(char **input, t_scene *s)
 
 	if (input && ft_strequals(input[0], "c"))
 	{
-		cam = &s->cameras;
+		cam = &s->cameras[s->camera_counter];
 		//cam = make_camera(s->resolution_y, s->resolution_x,
 		//		ft_atoi(input[4]) * (M_PI / 180));
-		make_camera(s, ft_atoi(input[4]) * (M_PI / 180));
+		init_camera(s, ft_atoi(input[4]) * (M_PI / 180));
 		set_tuple(&cam->from, input[1], POINT);
 		set_tuple(&dir, input[2], VECTOR);
 		set_tuple(&up, input[3], VECTOR);
@@ -126,7 +139,7 @@ void	handle_l(char **input, t_scene *s)
 ** char **input is a result of the ft_split() by whitespace 
 ** of each *line from GNL get from input file
 */
-void	handle_line(char **input, t_scene *s, t_all_shapes *all_shapes)
+void	handle_line(char **input, t_scene *s, t_allshapes *allshapes)
 {
 	if (ft_strequals(input[0], "R"))
 		handle_r(input, s);
@@ -137,7 +150,7 @@ void	handle_line(char **input, t_scene *s, t_all_shapes *all_shapes)
 	else if (ft_strequals(input[0], "l"))
 		handle_l(input, s);
 	else if (ft_strequals(input[0], "sp"))
-		handle_sphere(input, s, all_shapes);
+		handle_sphere(input, s, allshapes);
 	/*
 	else if (ft_strequals(input[0], "pl"))
 		handle_plane(input, s);
@@ -154,22 +167,36 @@ void	handle_line(char **input, t_scene *s, t_all_shapes *all_shapes)
 	*/
 }
 
-void	parse_scene(int fd, int *counters, t_scene *s, t_all_shapes *all_shapes)
+void	parse_scene(int fd, t_scene *s, t_allshapes *allshapes)
 {
-	char	*line;
+	char	line[GNL_BUF_SIZE];
+	char	*l;
 
-	while (get_next_line(fd, &line))
+	//while (get_next_line(fd, &line))
+	while ((l = get_next_line(fd, line)) != NULL)
 	{
 		/* DEBUG */
-		printf("line: %s\n", line);
+		if (line[0] != '\0')
+			printf("\tl: [%p], line:[%s]\n", l, line);
+			//printf("line: %s\n", line);
 		/* ***** */
-		if (line && !ft_strequals(line, ""))
-			handle_line(ft_whitespaces(line), s, all_shapes);
-		free(line);
+		//if (line && !ft_strequals(line, ""))
+
+		if (l && !ft_strequals(line, ""))
+		{
+			//printf("OK 1\n");
+			handle_line(ft_whitespaces(line), s, allshapes);
+			//printf("OK 2\n");
+		}
+		//free(line);
 	}
-	if (line && !ft_strequals(line, ""))
-		handle_line(ft_whitespaces(line), s, all_shapes);
-	free(line);
+	//if (line && !ft_strequals(line, ""))
+	
+	//printf("\tl: [%p], line:[%s]\n", l, line);
+	
+	if (l && !ft_strequals(line, ""))
+		handle_line(ft_whitespaces(line), s, allshapes);
+	//free(line);
 	//free(counters);
 	close(fd);
 }

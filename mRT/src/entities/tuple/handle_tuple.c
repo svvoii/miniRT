@@ -6,11 +6,11 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 13:12:26 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 14:48:17 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../heads_global/minirt.h"
+#include "../../../includes/minirt.h"
 
 /*
 ** Takes a pointer to t_tuple instance, char * to an input values of 3 doubles
@@ -29,14 +29,6 @@ void	set_tuple(t_tuple *tuple, char *value, e_tuple type)
 	tuple->y = ft_atod(input[1]);
 	tuple->z = ft_atod(input[2]);
 	tuple->type = type;
-}
-
-void	copy_tuple(t_tuple *dest, t_tuple *from)
-{
-	from->type = dest->type;
-	from->x = dest->x;
-	from->y = dest->y;
-	from->z = dest->z;
 }
 
 /*
@@ -72,9 +64,18 @@ void	add_tuples(t_tuple *dest, t_tuple *t1, t_tuple *t2)
 		dest->type = t1->type + t2->type;
 }
 
+void	copy_tuple(t_tuple *dest, t_tuple *from)
+{
+	from->type = dest->type;
+	from->x = dest->x;
+	from->y = dest->y;
+	from->z = dest->z;
+}
+
 /*
-** ..need to check how the substruction of tuples go
 ** VECTOR = 0, POINT = 1 or COLOR = 2
+** ..it is not clear what is the type shall be when substracting
+** VECTOR - POINT = -1.. ?!
 */
 void	substract_tuple(t_tuple *dest, t_tuple *t1, t_tuple *t2)
 {
@@ -83,8 +84,11 @@ void	substract_tuple(t_tuple *dest, t_tuple *t1, t_tuple *t2)
 	dest->z = t1->z - t2->z;
 	if (t1->type == COLOR || t2->type == COLOR)
 		dest->type = COLOR;
+	else if (t1->type == VECTOR && t2->type == POINT)
+		dest->type = t1->type - t2->type; // ???
 	else
-		dest->type = abs(t1->type - t2->type);
+		dest->type = t1->type - t2->type;
+		//dest->type = abs(t1->type - t2->type);
 }
 
 double	length_tuple(t_tuple *t)

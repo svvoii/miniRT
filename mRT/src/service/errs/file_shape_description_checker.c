@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 21:27:33 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 19:07:43 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:17:18 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
  * 2 - diameter
  * 3 - color
  */
-void	check_sphere(int **counters_ptr, int *is_correct, char **str)
+void	check_sphere(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -46,12 +46,12 @@ void	check_sphere(int **counters_ptr, int *is_correct, char **str)
  * 2 - normale
  * 3 - color
  */
-void	check_plane(int **counters_ptr, int *is_correct, char **str)
+void	check_plane(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -74,13 +74,13 @@ void	check_plane(int **counters_ptr, int *is_correct, char **str)
  * 3 - rib length
  * 4 - color
  */
-void	check_square_cube(int **counters_ptr, int *is_correct, char **str)
+void	check_square_cube(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -107,12 +107,12 @@ void	check_square_cube(int **counters_ptr, int *is_correct, char **str)
  * 3 - point C
  * 4 - color
  */
-void	check_triangle(int **counters_ptr, int *is_correct, char **str)
+void	check_triangle(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;
@@ -137,14 +137,14 @@ void	check_triangle(int **counters_ptr, int *is_correct, char **str)
  * 4 - diameter
  * 5 - color
  */
-void	check_cone_cylinder(int **counters_ptr, int *is_correct, char **str)
+void	check_cone_cylinder(int *counters, int *is_correct, char **str)
 {
-	int		*counters;
+	//int		*counters;
 	int		i;
 	double	s1;
 	double	s2;
 
-	counters = *counters_ptr;
+	//counters = *counters_ptr;
 	i = 0;
 	while (str[i])
 		i++;

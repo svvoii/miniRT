@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:24:17 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 19:19:25 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:44:51 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <fcntl.h>
 
 # define GNL_BUF_SIZE 10240
-
 
 double	ft_atod(char *str);
 int		ft_atoi(const char *str);

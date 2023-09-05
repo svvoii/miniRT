@@ -6,12 +6,18 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 18:03:51 by sbocanci          #+#    #+#             */
-/*   Updated: 2023/09/04 18:54:45 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:11:23 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/* 
+** Short version of GNL whish does not use malloc
+**
+** It also does not save \n character in the end of the line
+** this helps in proper parsing logic
+*/
 char	*get_next_line(int fd, char *line)
 {
 	char	c_buffer;
@@ -25,12 +31,10 @@ char	*get_next_line(int fd, char *line)
 	count = 0;
 	while ((read_ = read(fd, &c_buffer, 1)) > 0)
 	{
+		if (c_buffer == '\n')
+			break ;
 		line[count] = c_buffer;
 		count++;
-		if (c_buffer == '\n')
-		{
-			break ;
-		}
 	}
 	line[count] = '\0';
 	if (read_ < 0 || (read_ == 0 && count == 0))
