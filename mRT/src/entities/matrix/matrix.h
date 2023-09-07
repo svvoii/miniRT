@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 15:04:10 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:28:16 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	mtx_scale(t_matrix *m, double x, double y, double z);
 void	mtx_translate(t_matrix *m, t_tuple *tpl);
 void	mtx_multiply(t_matrix *res, t_matrix *m1, t_matrix *m2);
 void	view_transform(t_camera *cam, t_tuple *to, t_tuple *up);
+
+
+/* DEBUG */
+void	print_matrix(t_matrix *m);
 
 /*
 

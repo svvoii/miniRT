@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 17:02:25 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 09:03:21 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	check_file_creation(int *fd_list)
 int	main(int ac, char **av)
 {
 	int			fd;
-	int			*fd_list;
+	//int			*fd_list;
 	int			counters[INSTRUCTION_SET_SIZE];
 	t_scene		s;
 	t_allshapes	all_shapes;
 
 	fd = check_arguments(ac, av);
-	fd_list = NULL;
+	//fd_list = NULL;
 	check_fd_argnum(fd, ac);
 	if (check_file(av[ac - 1], counters) == false)
 	{

@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 00:41:24 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 15:37:56 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:40:32 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ void	init_matrix(t_matrix *m)
 		}
 		y++;
 	}
-	m->h = 0;
-	m->w = 0;
+	/* IMPORTANT TO INITIALIZE h amd w and also change it if and when necessary !! */
+	m->h = M_MAX;
+	m->w = M_MAX;
 }
 
 void	init_cameras(t_camera *cam)

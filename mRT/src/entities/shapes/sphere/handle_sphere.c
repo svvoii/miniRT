@@ -12,30 +12,6 @@
 
 #include "../../../../includes/minirt.h"
 
-/* DEBUG */
-void	print_matrix(t_matrix *m)
-{
-	int	h = 0;
-	int	w = 0;
-
-	/* DEBUG */
-	printf("m->h: [%d], m->w: [%d]\n", M_MAX, M_MAX);
-	/* ***** */
-	while (h < m->h)
-	{
-		printf("[ ");
-		w = 0;
-		while (w < m->w)
-		{
-			printf("%.1f ", m->matrix[h][w]);
-			w++;
-		}
-		printf("]\n");
-		h++;
-	}
-}
-/* ***** */
-
 void	activate_sphere(t_shape *shape, t_sphere *sphere)
 {
 	sphere->active = true;
@@ -86,9 +62,12 @@ void	handle_sphere(char **input, t_scene *s, t_allshapes *all_shapes)
 	int		i;
 
 	/* DEBUG */
+	printf("SPHERE\n");
 	print_strings(input);
-	/* ***** */
 
+	init_matrix(&tmp.translate);
+	init_matrix(&tmp.scale);
+	/* ***** */
 	tmp.shape = &s->shapes[s->shape_counter];
 	i = 0;
 	while (all_shapes->sphere[i].active == true && i < MAX_SPHERE)
@@ -105,12 +84,12 @@ void	handle_sphere(char **input, t_scene *s, t_allshapes *all_shapes)
 	mtx_multiply(&tmp.shape->trans, &tmp.translate, &tmp.scale);
 	s->shape_counter++;
 	/* DEBUG */
+	/*
 	printf("TRANSLATE:\n");
 	print_matrix(&tmp.translate);	
 	printf("SCALE:\n");
 	print_matrix(&tmp.scale);	
 	printf("RESULT:\n");
 	print_matrix(&tmp.shape->trans);	
-	/*
 	*/
 }

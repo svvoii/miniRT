@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 18:38:31 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 14:19:14 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ void	handle_c(char **input, t_scene *s)
 	t_tuple		to;
 	t_camera	*cam;
 
+	/* DEBUG */
+	printf("CAMERA\n");
+	/* ***** */
 	if (input && ft_strequals(input[0], "c"))
 	{
 		cam = &s->cameras[s->camera_counter];
@@ -176,8 +179,8 @@ void	parse_scene(int fd, t_scene *s, t_allshapes *allshapes)
 	while ((l = get_next_line(fd, line)) != NULL)
 	{
 		/* DEBUG */
-		if (line[0] != '\0')
-			printf("\tl: [%p], line:[%s]\n", l, line);
+		//if (line[0] != '\0')
+		printf("line:[%s], l @ [%p]\n", line, l);
 			//printf("line: %s\n", line);
 		/* ***** */
 		//if (line && !ft_strequals(line, ""))
