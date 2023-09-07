@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:11:07 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 14:21:30 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:08:50 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,12 @@ typedef struct scene
 # include "../src/entities/matrix/matrix.h"
 # include "../src/entities/shapes/sphere/sphere.h"
 
+# include "../src/entities/bmp/bmp.h"
+# include "../src/entities/intersection/intersection.h"
+# include "../src/service/window/window.h"
+# include "../src/entities/light/light.h"
+# include "../src/entities/ray/ray.h"
+
 /* */
 /*
 # include "../src/entities/ray/ray.h"
@@ -213,10 +219,7 @@ typedef struct scene
 # include "../src/entities/shapes/plane/plane.h"
 # include "../src/entities/shapes/triangle/triangle.h"
 # include "../src/entities/shapes/square/square.h"
-# include "../src/entities/intersection/intersection.h"
-# include "../src/entities/bmp/bmp.h"
 
-# include "../src/service/window/window.h"
 
 int		min(int a, int b);
 int		max(int a, int b);

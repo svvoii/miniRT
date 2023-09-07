@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light.h                                            :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 16:30:15 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:46:42 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIGHT_H
-# define LIGHT_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
 # include "../../../includes/minirt.h"
 
-//void	make_light(t_light *light, t_tuple *position, t_tuple *color);
+typedef struct mlx_wrap
+{
+	void		*mlx;
+	void		*win;
+	void		**imgs;
+	char		**addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			img_ptr;
+	int			img_counter;
+}	t_mlx_wrap;
 
 /*
-typedef struct light
-{
-	t_tuple	position;
-	t_tuple	color;
-}	t_light;
-typedef struct light
-{
-	t_tuple	*position;
-	t_tuple	*color;
-}	t_light;
-t_light	*light_make(t_tuple *position, t_tuple *color);
-void	light_free(t_light *l);
+void		argb_render(t_camera *c, t_world *w, t_canvas *img);
+void		fill_image(t_canvas *c, t_mlx_wrap *data, int count);
+void		display_scene(t_scene *s);
+int			w_close(t_mlx_wrap *data);
+int			k_press(int keycode, t_mlx_wrap *data);
 */
 
 #endif

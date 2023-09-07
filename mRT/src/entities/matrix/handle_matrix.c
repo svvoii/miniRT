@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 14:25:41 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:41:32 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,4 +216,17 @@ void	view_transform(t_camera *cam, t_tuple *to, t_tuple *up)
 	tuple_free(from);
 	return (view_matrix);
 	*/
+}
+
+void	tuple_to_matrix(t_matrix *m, t_tuple *t)
+{
+	//t_matrix	*m;
+
+	//m = matrix_matrix(4, 1);
+	m->matrix[0][0] = t->x;
+	m->matrix[1][0] = t->y;
+	m->matrix[2][0] = t->z;
+	m->matrix[3][0] = (double)t->type;
+	m->h = 4;
+	m->w = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 15:09:35 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:16:41 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,28 @@ void	init_camera(t_scene *s, double fov)
 	//return (cam);
 }
 
-/*
-t_ray	*ray_for_pix(t_camera *c, int y, int x)
+/* 
+** This f() used in argb_renderer() in window.c 
+*/
+t_ray	*ray_for_pix(t_camera *cam, int y, int x)
 {
 	double	xwrld;
 	double	ywrld;
-	t_tuple	*pixel;
-	t_tuple	*origin;
-	t_tuple	*direction;
+	t_tuple	pixel;
+	t_tuple	origin;
+	t_tuple	direction;
 
-	xwrld = c->half_w - ((double)y + 0.5) * c->pix_size;
-	ywrld = c->half_h - ((double)x + 0.5) * c->pix_size;
+	xwrld = cam->half_w - ((double)y + 0.5) * cam->pix_size;
+	ywrld = cam->half_h - ((double)x + 0.5) * cam->pix_size;
 	pixel = tuple_apply_trans_matrix(
-			matrix_invert(c->transform), tuple_point(ywrld, xwrld, -1));
+			matrix_invert(cam->transform), tuple_point(ywrld, xwrld, -1));
 	origin = tuple_apply_trans_matrix(
-			matrix_invert(c->transform), tuple_point(0, 0, 0));
+			matrix_invert(cam->transform), tuple_point(0, 0, 0));
 	direction = tuple_normalize(tuple_substract(pixel, tuple_copy(origin)));
 	return (ray_ray(origin, direction));
 }
 
+/*
 void	render(t_camera *c, t_world *w, t_canvas *img)
 {
 	t_ray		*r;
