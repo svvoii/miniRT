@@ -6,13 +6,14 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:46:38 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:13:19 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
 /*
+*/
 t_matrix	*invert(double determinant, t_matrix *m, t_matrix *inverted)
 {
 	int			i;
@@ -41,14 +42,13 @@ t_matrix	*invert(double determinant, t_matrix *m, t_matrix *inverted)
 	}
 	return (inverted);
 }
-*/
 
 t_matrix	*matrix_invert(t_matrix *m)
 {
 	double		determinant;
-	t_matrix	*inverted;
+	//t_matrix	*inverted;
 
-	inverted = NULL;
+	//inverted = NULL;
 	determinant = matrix_determinant(m);
 	if (determinant)
 		inverted = invert(determinant, m, inverted);
@@ -57,7 +57,7 @@ t_matrix	*matrix_invert(t_matrix *m)
 	return (inverted);
 }
 
-t_tuple	*tuple_apply_trans_matrix(t_matrix *trans_matrix, t_tuple *tup)
+void	tuple_apply_trans_matrix(t_tuple *resut, t_matrix *invtd, t_tuple *tup)
 {
 	t_matrix	source_tuple_converted;
 	t_matrix	product;
@@ -73,7 +73,7 @@ t_tuple	*tuple_apply_trans_matrix(t_matrix *trans_matrix, t_tuple *tup)
 	need_free = 1;
 	if (trans_matrix)
 	{
-		matrix_multiply(&product, trans_matrix, &source_tuple_converted);
+		mtx_multiply(&product, trans_matrix, &source_tuple_converted);
 		need_free = 0;
 	}
 	else

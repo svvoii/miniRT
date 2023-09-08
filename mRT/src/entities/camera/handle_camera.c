@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:16:41 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:35:59 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,31 @@ void	init_camera(t_scene *s, double fov)
 /* 
 ** This f() used in argb_renderer() in window.c 
 */
-t_ray	*ray_for_pix(t_camera *cam, int y, int x)
+void	ray_for_pix(t_ray *ray, t_camera *cam, int y, int x)
 {
-	double	xwrld;
-	double	ywrld;
-	t_tuple	pixel;
-	t_tuple	origin;
-	t_tuple	direction;
+	t_tuple		pixel_t;
+	t_tuple		origin_t;
+	t_tuple		direction_t;
+	t_tuple		tmp_t;
+	t_matrix	inverted_m;
 
-	xwrld = cam->half_w - ((double)y + 0.5) * cam->pix_size;
-	ywrld = cam->half_h - ((double)x + 0.5) * cam->pix_size;
-	pixel = tuple_apply_trans_matrix(
-			matrix_invert(cam->transform), tuple_point(ywrld, xwrld, -1));
-	origin = tuple_apply_trans_matrix(
-			matrix_invert(cam->transform), tuple_point(0, 0, 0));
-	direction = tuple_normalize(tuple_substract(pixel, tuple_copy(origin)));
-	return (ray_ray(origin, direction));
+	tmp_t.x = cam->half_w - ((double)y + 0.5) * cam->pix_size;
+	tmp_t.y = cam->half_h - ((double)x + 0.5) * cam->pix_size;
+	tmp_t.z = -1;
+	tmp_t.type = POINT;
+	mtx_invert(&inverted_m, &cam->transform);	
+	tuple_apply_trans_matrix(&pixel_t, &inverted_m, &tmp_t);
+	reset_tuple(&tmp_t);
+	tuple_apply_trans_matrix(&origin_t, &inverted_m, &tmp_t);
+	substract_tuple(&tmp_t, &pixel_t, &origin_t);
+	normalize_tuple(&direction_t, &tmp_t);
+	copy_tuple(&ray->origin, &origin_t);
+	copy_tuple(&ray->dir, &direction_t);
+	/* DEBUG */
+	//pixel = tuple_apply_trans_matrix(matrix_invert(cam->transform), tuple_point(ywrld, xwrld, -1));
+	//origin = tuple_apply_trans_matrix(matrix_invert(cam->transform), tuple_point(0, 0, 0));
+	//direction = tuple_normalize(tuple_substract(pixel, tuple_copy(origin)));
+	//return (ray_ray(origin, direction));
 }
 
 /*

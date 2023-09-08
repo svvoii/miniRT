@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:41:32 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:46:25 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_matrix(t_matrix *m)
 		w = 0;
 		while (w < m->w)
 		{
-			printf("%.1f ", m->matrix[h][w]);
+			printf("%.1f ", m->mtx[h][w]);
 			w++;
 		}
 		printf("]\n");
@@ -47,25 +47,25 @@ void	mtx_identity(t_matrix *m, int i)
 {
 	while (--i >= 0)
 	{
-		m->matrix[i][i] = 1;
+		m->mtx[i][i] = 1;
 	}
 }
 
 void	mtx_scale(t_matrix *m, double x, double y, double z)
 {
 	mtx_identity(m, M_MAX);
-	m->matrix[0][0] = x;
-	m->matrix[1][1] = y;
-	m->matrix[2][2] = z;
+	m->mtx[0][0] = x;
+	m->mtx[1][1] = y;
+	m->mtx[2][2] = z;
 }
 
 //void	mtx_translate(t_matrix *m, double x, double y, double z)
 void	mtx_translate(t_matrix *m, t_tuple *tpl)
 {
 	mtx_identity(m, M_MAX);
-	m->matrix[0][3] = tpl->x;
-	m->matrix[1][3] = tpl->y;
-	m->matrix[2][3] = tpl->z;
+	m->mtx[0][3] = tpl->x;
+	m->mtx[1][3] = tpl->y;
+	m->mtx[2][3] = tpl->z;
 }
 /*
 ** Consider this input file with only one sphere to render:
@@ -79,13 +79,17 @@ void	mtx_translate(t_matrix *m, t_tuple *tpl)
 ** DEBUG printfs in the function bellow
 ** ..around 7 seconds to render same setting but without printf DEBUG statements
 **
-** call from handle_sphere() receive:	m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_plane() receive:	m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_square() receive:	m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_cylinder() receive:	m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_triangle() receive:	m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_cone() receive:		m1[4][4] and m2[4][1] so the result is res[4][1]
-** call from handle_cube() receive:		m1[4][4] and m2[4][1] so the result is res[4][1]
+** call from handle_sphere() receive:	m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_plane() receive:	m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_square() receive:	m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_cylinder() receive:	m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_triangle() receive:	m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_cone() receive:		m1[4][4] and m2[4][4] so result is res[4][4]
+** call from handle_cube() receive:		m1[4][4] and m2[4][4] so result is res[4][4]
+**
+** However, this also used in rendering logic to produce each pixel of the canvs,
+** call from tuple_apply_trans_matrix() receive: m1[4][4] and m2[4][1] 
+** so the result is res[4][1]
 **
 */
 void	mtx_multiply(t_matrix *res, t_matrix *m1, t_matrix *m2)
@@ -118,14 +122,14 @@ void	mtx_multiply(t_matrix *res, t_matrix *m1, t_matrix *m2)
 			//while (i < m1->w && i < m2->h)
 			while (i < M_MAX)
 			{
-				tmp += m1->matrix[h][i] * m2->matrix[i][w];
+				tmp += m1->mtx[h][i] * m2->mtx[i][w];
 				//res->matrix[h][w] += m1->matrix[h][i] * m2->matrix[i][w];
 				/* DEBUG */
 				//printf("\ttmp:[%.1f]\tm1[%d][%d]: [%.1f], m2[%d][%d]: [%.1f]\n", tmp, h, i, m1->matrix[h][i], i, w, m1->matrix[i][w]);
 				/* ***** */
 				i++;
 			}
-			res->matrix[h][w] = tmp; 
+			res->mtx[h][w] = tmp; 
 			w++;
 		}
 		h++;
@@ -148,15 +152,15 @@ void	mtx_combine(t_matrix *res, t_tuple *left,
 	//t_matrix	*res;
 
 	//res = matrix_identity(4);
-	res->matrix[0][0] = left->x;
-	res->matrix[0][1] = left->y;
-	res->matrix[0][2] = left->z;
-	res->matrix[1][0] = true_up->x;
-	res->matrix[1][1] = true_up->y;
-	res->matrix[1][2] = true_up->z;
-	res->matrix[2][0] = -1 * forward->x;
-	res->matrix[2][1] = -1 * forward->y;
-	res->matrix[2][2] = -1 * forward->z;
+	res->mtx[0][0] = left->x;
+	res->mtx[0][1] = left->y;
+	res->mtx[0][2] = left->z;
+	res->mtx[1][0] = true_up->x;
+	res->mtx[1][1] = true_up->y;
+	res->mtx[1][2] = true_up->z;
+	res->mtx[2][0] = -1 * forward->x;
+	res->mtx[2][1] = -1 * forward->y;
+	res->mtx[2][2] = -1 * forward->z;
 	//res->h = M_MAX;
 	//res->w = M_MAX;
 }
@@ -218,15 +222,23 @@ void	view_transform(t_camera *cam, t_tuple *to, t_tuple *up)
 	*/
 }
 
+/*
+** This converts the tuple int matrix[4][1] like this:
+** [ x ]
+** [ y ]
+** [ z ]
+** [ e_type ]
+**
+*/
 void	tuple_to_matrix(t_matrix *m, t_tuple *t)
 {
 	//t_matrix	*m;
 
 	//m = matrix_matrix(4, 1);
-	m->matrix[0][0] = t->x;
-	m->matrix[1][0] = t->y;
-	m->matrix[2][0] = t->z;
-	m->matrix[3][0] = (double)t->type;
+	m->mtx[0][0] = t->x;
+	m->mtx[1][0] = t->y;
+	m->mtx[2][0] = t->z;
+	m->mtx[3][0] = (double)t->type;
 	m->h = 4;
 	m->w = 1;
 }

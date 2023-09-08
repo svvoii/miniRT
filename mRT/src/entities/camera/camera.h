@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:15:04 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:38:38 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	init_camera(t_scene *s, double fov);
 
-t_ray		*ray_for_pix(t_camera *c, int y, int x);
+void	ray_for_pix(t_ray *ray, t_camera *cam, int y, int x);
 
 /*
 typedef struct camera

@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:58:18 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:44:47 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	init_mlx_wrapper(t_mlx_wrap *data, t_scene *s)
 void	argb_render(t_camera *cam, t_world *world, t_canvas *canvas)
 {
 	t_ray		ray;
-	t_tuple		*color;
+	t_tuple		color;
 	int			y;
 	int			x;
 
@@ -108,11 +108,14 @@ void	argb_render(t_camera *cam, t_world *world, t_canvas *canvas)
 		x = -1;
 		while (++x < cam->v_size)
 		{
-			/* DEBUG from here on */
+			ray_for_pix(&ray, cam, y, x);
+			color_at(&color, world, &ray);
 
-			ray = ray_for_pix(cam, y, x);
+			/* DEBUG from here on */
+			//ray = ray_for_pix(cam, y, x);
+
 			color = color_at(world, ray);
-			ray_free(ray);
+			//ray_free(ray);
 			canvas->canvas[y][x] = tuple_to_argb(color);
 		}
 	}

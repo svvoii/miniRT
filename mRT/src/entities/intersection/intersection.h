@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 16:52:42 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:46:00 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ typedef struct world
 /* world.c */
 void	init_world(t_world *w, t_shape *shapes, t_light *lights, int l_count);
 void	world_set_ambience(t_light *w_amb, t_tuple *from, t_tuple *color);
+
+/* intersection_1.c */
+void	color_at(t_tuple *color, t_world *w, t_ray *r);
 
 /*
 t_lightning_pack		*make_l_p(t_light *l, t_computations *c);

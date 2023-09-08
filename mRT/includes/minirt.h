@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:11:07 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 17:08:50 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:56:14 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct tuple
 
 typedef struct matrix
 {
-	double	matrix[M_MAX][M_MAX];
+	double	mtx[M_MAX][M_MAX];
 	int		h;
 	int		w;
 }	t_matrix;

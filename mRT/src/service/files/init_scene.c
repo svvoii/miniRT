@@ -6,11 +6,31 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 00:41:24 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 12:40:32 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/07 12:40:32y sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
+
+void	init_sub_matrix(t_matrix *m, int h, int w)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < h)
+	{
+		x = 0;
+		while (x < w)
+		{
+			m->mtx[y][x] = 0;
+			x++;
+		}
+		y++;
+	}
+	m->h = h;
+	m->w = w;
+}
 
 void	init_matrix(t_matrix *m)
 {
@@ -23,12 +43,11 @@ void	init_matrix(t_matrix *m)
 		x = 0;
 		while (x < M_MAX)
 		{
-			m->matrix[y][x] = 0;
+			m->mtx[y][x] = 0;
 			x++;
 		}
 		y++;
 	}
-	/* IMPORTANT TO INITIALIZE h amd w and also change it if and when necessary !! */
 	m->h = M_MAX;
 	m->w = M_MAX;
 }
