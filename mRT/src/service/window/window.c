@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 13:44:47 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:51:29 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	argb_render(t_camera *cam, t_world *world, t_canvas *canvas)
 
 			color = color_at(world, ray);
 			//ray_free(ray);
-			canvas->canvas[y][x] = tuple_to_argb(color);
+			canvas->canvas[y][x] = tuple_to_argb(&color);
 		}
 	}
 }
