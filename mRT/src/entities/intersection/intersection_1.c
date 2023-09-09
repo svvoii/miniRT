@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 13:46:16 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/09 13:59:59 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,6 @@ void	add_intersection(t_intersection *new_elem,
 		free((*list)->list);
 	free(*list);
 	*list = nl;
-}
-
-t_intersection_list	*intersect_world(t_ray *r, t_world *w)
-{
-	int					i;
-	int					j;
-	int					size;
-
-	w->unsorted = malloc(sizeof(t_intersection_list *) * w->shape_counter);
-	i = w->shape_counter;
-	size = 0;
-	while (--i >= 0)
-	{
-		w->unsorted[i] = intersect_shape(w->shapes[i], r);
-		size += w->unsorted[i]->size;
-	}
-	w->merged = intersection_list_make(size);
-	size = -1;
-	i = -1;
-	while (++i < w->shape_counter)
-	{
-		j = -1;
-		while (++j < w->unsorted[i]->size)
-			w->merged->list[++size] = w->unsorted[i]->list[j];
-		free(w->unsorted[i]->list);
-		free(w->unsorted[i]);
-	}
-	free(w->unsorted);
-	return (w->merged);
 }
 
 t_computations	*precomp(t_intersection *i, t_ray *r)
@@ -92,18 +63,57 @@ t_tuple	*shade_hit(t_world *w, t_computations *cs, t_light *current)
 }
 */
 
+/* 
+** This is where the calculations for intersections start
+** 
+** DEBUG from intersect shape
+*/
+t_intersection_list	*intersect_world(t_ray *r, t_world *w)
+{
+	int					i;
+	int					j;
+	int					size;
+
+	w->unsorted = malloc(sizeof(t_intersection_list *) * w->shape_counter);
+	i = w->shape_counter;
+	size = 0;
+	while (--i >= 0)
+	{
+		w->unsorted[i] = intersect_shape(w->shapes[i], r);
+		size += w->unsorted[i]->size;
+	}
+	w->merged = intersection_list_make(size);
+	size = -1;
+	i = -1;
+	while (++i < w->shape_counter)
+	{
+		j = -1;
+		while (++j < w->unsorted[i]->size)
+			w->merged->list[++size] = w->unsorted[i]->list[j];
+		free(w->unsorted[i]->list);
+		free(w->unsorted[i]);
+	}
+	free(w->unsorted);
+	return (w->merged);
+}
+
+/*
+** The t_tuple *collor passed from argb_render()
+** this function process the input and saves the color into that tuple
+** This is done in a loop for each pixel of the canvas.
+*/
 //t_tuple	*color_at(t_world *w, t_ray *r)
 void	color_at(t_tuple *color, t_world *w, t_ray *r)
 {
-	t_intersection_list	*l;
+	t_intersection_list	*i_list;
 	t_intersection		*i;
 	t_computations		*c;
 	//t_tuple				*color;
 	int					j;
 
 	j = -1;
-	l = intersect_world(r, w);
-	i = hit(l);
+	i_list = intersect_world(r, w);
+	i = hit(i_list);
 	if (!i)
 		color = tuple_color(0, 0, 0);
 	else

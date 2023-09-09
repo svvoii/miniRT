@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 14:51:29 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:06:13 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ void	init_mlx_wrapper(t_mlx_wrap *data, t_scene *s)
 	data->img_counter = s->camera_counter;
 }
 
+/*
+** In this f() t_ray is created and used to project it through the objects.
+** t_tuple *color is used to retrieve the color of each pixel
+** and convert it to RGB before saving it on the canvas.
+**
+*/
 void	argb_render(t_camera *cam, t_world *world, t_canvas *canvas)
 {
 	t_ray		ray;
@@ -109,12 +115,13 @@ void	argb_render(t_camera *cam, t_world *world, t_canvas *canvas)
 		while (++x < cam->v_size)
 		{
 			ray_for_pix(&ray, cam, y, x);
-			color_at(&color, world, &ray);
 
 			/* DEBUG from here on */
 			//ray = ray_for_pix(cam, y, x);
+			//color = color_at(world, ray);
 
-			color = color_at(world, ray);
+			color_at(&color, world, &ray);
+
 			//ray_free(ray);
 			canvas->canvas[y][x] = tuple_to_argb(&color);
 		}

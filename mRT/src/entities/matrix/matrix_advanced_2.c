@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 13:13:19 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/09 13:55:39 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_matrix	*invert(double determinant, t_matrix *m, t_matrix *inverted)
 	{
 		j = -1;
 		while (++j < m->w)
-			cofactors->matrix[i][j] = matrix_cofactor(m, i, j);
+			cofactors->mtx[i][j] = matrix_cofactor(m, i, j);
 	}
 	inverted = matrix_transpose(cofactors);
 	i = -1;
@@ -36,8 +36,8 @@ t_matrix	*invert(double determinant, t_matrix *m, t_matrix *inverted)
 		j = -1;
 		while (++j < m->w)
 		{
-			diag = inverted->matrix[i][j] / determinant;
-			inverted->matrix[i][j] = diag;
+			diag = inverted->mtx[i][j] / determinant;
+			inverted->mtx[i][j] = diag;
 		}
 	}
 	return (inverted);
