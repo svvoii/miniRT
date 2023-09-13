@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/05 15:33:47 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:06:32 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	cross_product_tuple(t_tuple *cros_p, t_tuple *t1, t_tuple *t2);
 void	negate_tuple(t_tuple *t);
 
 /* tuple_basic.c */
-int	is_tuple(char *value, int exclude_neg);
+int		is_tuple(char *value, int exclude_neg);
+void	reset_tuple(t_tuple *tpl);
 
 /*
 # define IS_POINT    1

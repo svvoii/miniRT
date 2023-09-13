@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 18:11:07 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 11:56:14 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:50:01 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,15 @@ typedef struct scene
 	int			shape_counter;
 	t_shape		shapes[MAX_SHAPES];
 }	t_scene;
+
+/* ***** */
+/* RAY */
+typedef struct ray
+{
+	t_tuple	origin;
+	t_tuple	dir;
+}	t_ray;
+
 
 /* ***** */
 

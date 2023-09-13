@@ -24,6 +24,9 @@ SRC = \
 	entities/camera/handle_camera.c \
 \
 	entities/matrix/handle_matrix.c \
+	entities/matrix/matrix_advanced_1.c \
+	entities/matrix/matrix_advanced_2.c \
+	entities/matrix/matrix_advanced_3.c \
 \
 	entities/shapes/sphere/handle_sphere.c \
 \

@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/08 12:46:25 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/13 18:40:58 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	print_matrix(t_matrix *m)
 		w = 0;
 		while (w < m->w)
 		{
-			printf("%.1f ", m->mtx[h][w]);
+			printf("%.2f", m->mtx[h][w]);
+			if (m->w > 1)
+				printf("\t");
 			w++;
 		}
 		printf("]\n");

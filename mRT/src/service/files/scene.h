@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/07 13:06:16 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:17:49 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 # include "../../../includes/minirt.h"
 
 /* init_scene.c */
-void	initialize_scene(t_scene *scene);
+void	init_sub_matrix(t_matrix *m, int h, int w);
 void	init_matrix(t_matrix *m);
+void	initialize_scene(t_scene *scene);
 
 /* handle_scene.c */
 void	init_empty_shapes(t_allshapes *all_shapes);

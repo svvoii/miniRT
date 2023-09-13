@@ -6,7 +6,7 @@
 /*   By: sbocanci <sbocanci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 15:08:19 by rokupin           #+#    #+#             */
-/*   Updated: 2023/09/04 19:18:24 by sbocanci         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:06:00 by sbocanci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,11 @@ int	is_tuple(char *value, int exclude_neg)
 		free(next_part[i]);
 	free(next_part);
 	return (ret);
+}
+
+void	reset_tuple(t_tuple *tpl)
+{
+	tpl->x = 0.0;
+	tpl->y = 0.0;
+	tpl->z = 0.0;
 }
