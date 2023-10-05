@@ -1,0 +1,12 @@
+# resolution:   width    high
+R               500      500
+# ambient light:    brightness  color
+A                   0.6         255,255,255
+# camera:   position    direction   up-vectror      zoom
+c           17,17,17       -1,-1,-1    0,1,0           40
+# light source: position    brightness  color
+l               7,7,7       0.9         255,255,255
+# cone:     coordinates orientation diameter    height  is closed   color
+co          2,0,0       -1,0,0		1           10		1	        255,0,0
+co          0,0,2       0,0,-1		1           10		1	        0,255,0
+co          0,2,0       0.1,-1,0.1	1           10		1	        0,0,255
